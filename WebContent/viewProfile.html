@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Review Page</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+<style type="text/css">
+.tcenter {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+</style>
+
+<script type="text/javascript">
+
+   function findProfile(){
+	     var uid=document.getElementById("uid").value;
+	     //Make AJAX call
+	     fetch("mathieu?uid="+uid)
+	     .then(function(response) { 
+	    		// Convert to JSON
+	    		return response.json();
+	    	}).then(function(data) {  //JSON- JavaScript
+	    		 console.log(data);
+	    	     if(data.uid==0) {
+	    	    	 document.getElementById("message").innerHTML="Sorry , this id "+uid+" is not valid id"
+	    	    	 return;
+	    	     }
+	    	     document.getElementById("message").innerHTML="";
+	    		 document.getElementById("tuserid").innerHTML=data.userid;
+	    		 document.getElementById("tpassword").innerHTML=data.password;
+	    		 document.getElementById("tname").innerHTML=data.name;
+	    		 document.getElementById("temail").innerHTML=data.email;
+	    		 document.getElementById("tsalutation").innerHTML=data.salutation;
+	    		 document.getElementById("timage").src=data.image;
+	    		 document.getElementById("tuid").innerHTML=data.uid;
+	    		 document.getElementById("tsalutation").innerHTML=data.role;
+	    		 document.getElementById("tdate").innerHTML=data.createDate;
+	    		 
+	    	});
+   }
+
+</script>
+
+</head>
+<body>
+	<header style="background-color: #03a9f4; height: 30px;"> </header>
+	<div class="container">
+		<img src="img/student.png"  style="height: 150px;">
+
+		<div  class="tcenter" style="width: 75%">
+		       <span id="message" style="font-weight: bold;font-size: 18px;color:blue;">
+		         ........................................
+		       </span>
+		       <hr/>
+		       <label>Enter ID</label>
+				<input type="text" id="uid"   name="uid" class="form-control" style="display: inline;width: 30%">
+				<button type="button" class="btn btn-info" style="margin-top: -7px;" onclick="findProfile();">Go</button>
+				<hr/>
+		           <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th style="width: 50%">Username</th>
+        <th id="tuserid">
+         
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Password  :  </td>
+        <td  id="tpassword"></td>
+      </tr>
+      <tr>
+        <td>Name  :  </td>
+        <td id="tname"></td>
+      </tr>
+      <tr>
+        <td>Email  :  </td>
+        <td id="temail"></td>
+      </tr>
+      
+   
+      <tr>
+        <td>Salutation  :  </td>
+        <td id="tsalutation"></td>
+      </tr>
+      
+        <tr>
+        <td>Date  :  </td>
+        <td id="tdate"></td>
+      </tr>
+      
+            <tr>
+        <td>Uid  :  </td>
+        <td id="tuid"></td>
+        
+      </tr>
+      
+         <tr>
+        <td>Image  :  </td>
+        <td>
+          <img  id="timage" src=""  style="height: 200px;">
+        </td>
+      </tr>
+    </tbody>
+  </table>
+        <span style="float: right;">
+        <a href="dashboard.jsp"><button type="button" class="btn btn-primary">Edit</button></a>
+      	<a href="dashboard.jsp"><button type="button" class="btn btn-info">Next</button></a>
+      	</span>
+		</div>
+	</div>
+
+</body>
+</html>
