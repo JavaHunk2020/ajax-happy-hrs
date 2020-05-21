@@ -1,4 +1,4 @@
-package com.sql.conn;
+package com.sql.dao.entity;
 
 import java.sql.Timestamp;
 

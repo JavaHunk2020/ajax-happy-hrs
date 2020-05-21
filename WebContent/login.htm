@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+	</script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+<style type="text/css">
+
+.semere {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+</style>
+
+
+</head>
+<body>
+	<header style="background-color: #03a9f4; height: 30px;">
+	   <b>Address : = H-154,SEC-23,INDIA</b> 
+	   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<b style="color:yellow;">Email : = nagendra@cubicit.com</b> 
+	 </header>
+	<div  class="container">
+	     <hr style="border-top: 5px solid rgba(103,58,183,1);"/>
+		<img id="studentImage"  src="img/student.png" class="semere"  style="height: 200px;">
+		
+		
+		<div  class="semere"   style="width: 50%">
+		 <span  id="message"  style="color:red;font-size: 16px;font-weight: bold;">
+		 </span>
+		 			<br/>
+		            <label for="username">Username</label>
+		            <input type="text" name="username" id="username" class="form-control"   onkeyup="clearMessage();" >
+		              <br/>
+		               <label>Password</label>
+		            <input type="password" id="password"  name="password" class="form-control" onkeyup="clearMessage();">
+		             <br/>
+		<button type="button" class="btn btn-primary"  onclick="validateAuth();">Sign In</button>
+		<button type="button" class="btn btn-danger">Clear</button>
+		<a href="register.jsp"><button type="button" class="btn btn-info">Sign Up</button></a>
+		<a href="forgotPassword.jsp"><button type="button" class="btn btn-primary">Forget Password</button></a>
+		
+		<button type="button" class="btn btn-danger"  onclick="validate();">Change Image</button>
+		 <hr/>
+		<div  id="tresponse">
+		  coming soon
+		</div>
+		</div>
+		
+	</div>
+	
+	
+
+	
+	<script type="text/javascript">
+	
+	function clearMessage(){
+		 var spanObject=window.document.getElementById("message");
+		  spanObject.innerHTML="";
+	}
+		
+	
+	function validateAuth(){
+			var pusername=document.getElementById("username").value;
+			var ppassword=document.getElementById("password").value;
+			
+			
+			  if(pusername.length==0) {
+				  var spanObject=window.document.getElementById("message");
+				  spanObject.innerHTML="Username cannot be empty";
+				  document.getElementById("username").focus();
+				  return;
+			  }
+			  if(ppassword.length==0) {
+				  var spanObject=window.document.getElementById("message");
+				  spanObject.innerHTML="Password cannot be empty";
+				  document.getElementById("password").focus();
+				  return;
+			  }
+			
+			var obj ={username:pusername,password:ppassword};
+			//Make AJAX call - METHOD=POST - Sending JSON Data
+			
+			
+			//Accepting JSON data
+			const options = {
+					  method: 'POST',
+					  body: JSON.stringify(obj),
+					  headers: {
+					    'Content-Type': 'application/json',
+					    'Accept': 'application/json'
+					  }
+					};
+
+			 //name of oauth - servlet
+			 fetch('oauth', options)
+					  .then(res => res.json())
+					  .then(data => {
+						  	console.log(data);
+						  	document.getElementById("tresponse").innerHTML=JSON.stringify(data);
+					  });
+		}
+	
+	</script>
+
+</body>
+</html>
