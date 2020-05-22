@@ -50,8 +50,9 @@
 		<button type="button" class="btn btn-danger">Clear</button>
 		<a href="register.jsp"><button type="button" class="btn btn-info">Sign Up</button></a>
 		<a href="forgotPassword.jsp"><button type="button" class="btn btn-primary">Forget Password</button></a>
-		
-		<button type="button" class="btn btn-danger"  onclick="validate();">Change Image</button>
+		<a href="blockTime">
+		<button type="button" class="btn btn-danger" >Show Block Time</button>
+		</a>
 		 <hr/>
 		<div  id="tresponse">
 		  coming soon
@@ -91,7 +92,6 @@
 			
 			var obj ={username:pusername,password:ppassword};
 			//Make AJAX call - METHOD=POST - Sending JSON Data
-			
 			
 			//Accepting JSON data
 			const options = {
